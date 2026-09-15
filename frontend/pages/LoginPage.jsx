@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Eye, EyeOff, ShieldAlert, CheckCircle, ArrowRight, Sun, Moon } from 'lucide-react';
+import { Eye, EyeOff, ShieldAlert, CheckCircle, ArrowRight } from 'lucide-react';
 import '../styles/LoginPage.css';
 
-export default function LoginPage({ onNavigate, theme, toggleTheme }) {
+export default function LoginPage({ onNavigate }) {
   const [identity, setIdentity] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -43,6 +43,7 @@ export default function LoginPage({ onNavigate, theme, toggleTheme }) {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ identity, password }),
       });
 
@@ -62,7 +63,6 @@ export default function LoginPage({ onNavigate, theme, toggleTheme }) {
           onNavigate('dashboard');
         }, 1200);
       } else {
-        // If Vite proxy returns bad gateway / timeout, fall back to local database
         if (response.status === 502 || response.status === 504 || response.status === 404) {
           throw new Error(`Proxy gateway status ${response.status}`);
         }
@@ -105,11 +105,6 @@ export default function LoginPage({ onNavigate, theme, toggleTheme }) {
 
   return (
     <div className="auth-body">
-      {/* Floating Theme Toggler */}
-      <button type="button" onClick={toggleTheme} className="btn-theme-toggle" title="Toggle Theme Mode">
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
-
       {/* Ambient Glowing Background Blobs */}
       <div className="ambient-glow glow-1"></div>
       <div className="ambient-glow glow-2"></div>
@@ -233,3 +228,4 @@ export default function LoginPage({ onNavigate, theme, toggleTheme }) {
     </div>
   );
 }
+

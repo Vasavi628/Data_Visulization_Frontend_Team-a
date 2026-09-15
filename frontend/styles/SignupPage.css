@@ -1,29 +1,36 @@
-/* Signup Strength Meter Styling matching Test-Frontend/signup.html */
+/* ==========================================================================
+   INFOSYS THREAT DETECTION — SIGNUP: PASSWORD STRENGTH METER
+   Design System: Original Dark Cyber Glassmorphism
+   ========================================================================== */
 
+/* ── Strength Meter Container ────────────────────────────────────────────── */
 .password-strength-wrapper {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
+/* ── Bars Track ──────────────────────────────────────────────────────────── */
 .strength-bars {
-    display: flex;
-    gap: 6px;
-    width: 100%;
+  display: flex;
+  gap: 5px;
+  width: 100%;
 }
 
 .strength-bar {
-    height: 4px;
-    flex-grow: 1;
-    border-radius: 2px;
-    background-color: rgba(255, 255, 255, 0.08);
-    transition: background-color 0.3s ease;
+  height: 4px;
+  flex-grow: 1;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease;
 }
 
+/* ── Strength Label ───────────────────────────────────────────────────────── */
 .strength-text {
-    font-size: 11px;
-    color: #8e9fa6;
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #8e9fa6;
 }

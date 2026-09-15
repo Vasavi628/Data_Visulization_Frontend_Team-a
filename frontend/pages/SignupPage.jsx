@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, ShieldAlert, CheckCircle, UserPlus, Sun, Moon } from 'lucide-react';
+import { Eye, EyeOff, ShieldAlert, CheckCircle, UserPlus } from 'lucide-react';
 import '../styles/LoginPage.css'; // signup uses the same auth card styles
 import '../styles/SignupPage.css';
 
-export default function SignupPage({ onNavigate, theme, toggleTheme }) {
+export default function SignupPage({ onNavigate }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -63,6 +63,7 @@ export default function SignupPage({ onNavigate, theme, toggleTheme }) {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           username: username.trim(),
           email: email.trim(),
@@ -77,7 +78,6 @@ export default function SignupPage({ onNavigate, theme, toggleTheme }) {
           onNavigate('login');
         }, 1200);
       } else {
-        // If Vite proxy returns bad gateway / timeout, fall back to local database
         if (response.status === 502 || response.status === 504 || response.status === 404) {
           throw new Error(`Proxy gateway status ${response.status}`);
         }
@@ -119,11 +119,6 @@ export default function SignupPage({ onNavigate, theme, toggleTheme }) {
 
   return (
     <div className="auth-body">
-      {/* Floating Theme Toggler */}
-      <button type="button" onClick={toggleTheme} className="btn-theme-toggle" title="Toggle Theme Mode">
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
-
       {/* Ambient Glowing Background Blobs */}
       <div className="ambient-glow glow-1"></div>
       <div className="ambient-glow glow-2"></div>
@@ -266,3 +261,4 @@ export default function SignupPage({ onNavigate, theme, toggleTheme }) {
     </div>
   );
 }
+
